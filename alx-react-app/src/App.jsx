@@ -1,14 +1,9 @@
 import React from 'react';
+import Header from './components/Header';
+import MainContent from './components/MainContent';
+import Footer from './components/Footer';
 import WelcomeMessage from './components/WelcomeMessage';
-
-function App() {
-    return (
-        <div>
-            <WelcomeMessage />
-        </div>
-    );
-}
-
+import UserProfile from './components/UserProfile';
 import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
@@ -39,8 +34,14 @@ function App() {
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
       </p>
+      <div>
+            <Header />
+            <MainContent />
+            <WelcomeMessage />
+            <UserProfile name="Alice" age="25" bio="Loves hiking and photography" />
+            <Footer />
+        </div>
     </>
   )
 }
-
-export default App
+export default App;
