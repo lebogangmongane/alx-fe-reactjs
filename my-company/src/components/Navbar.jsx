@@ -1,29 +1,21 @@
 import { Link } from 'react-router-dom';
 
-const Navbar = () => {
-  return (
-    <nav style={{
-      display: 'flex',
-      justifyContent: 'space-between',
-      alignItems: 'center',
-      padding: '1rem',
-      backgroundColor: '#333',
-      color: '#fff'
-    }}>
-      <h1 style={{ margin: 0 }}>My Company</h1>
-      <ul style={{
-        display: 'flex',
-        listStyleType: 'none',
-        margin: 0,
-        padding: 0
-      }}>
-        <li style={{ margin: '0 1rem' }}><a href="/" style={{ color: '#fff', textDecoration: 'none' }}>Home</a></li>
-        <li style={{ margin: '0 1rem' }}><a href="/about" style={{ color: '#fff', textDecoration: 'none' }}>About</a></li>
-        <li style={{ margin: '0 1rem' }}><a href="/services" style={{ color: '#fff', textDecoration: 'none' }}>Services</a></li>
-        <li style={{ margin: '0 1rem' }}><a href="/contact" style={{ color: '#fff', textDecoration: 'none' }}>Contact</a></li>
-      </ul>
-    </nav>
-  );
-};
+function Navbar() {
+    return (
+        <nav style={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            padding: '1rem',
+            backgroundColor: '#333',
+            color: '#fff'
+          }}>
+            <Link to="/" style={{ color: 'white', marginRight: '10px' }}>Home</Link>
+            <Link to="/about" style={{ color: 'white', marginRight: '10px' }}>About</Link>
+            <Link to="/services" style={{ color: 'white', marginRight: '10px' }}>Services</Link>
+            <Link to="/contact" style={{ color: 'white' }}>Contact</Link>
+        </nav>
+    );
+}
 
 export default Navbar;
