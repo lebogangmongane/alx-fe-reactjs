@@ -1,20 +1,14 @@
 /* eslint-disable no-unused-vars */
-// RecipeList.jsx
+// src/components/RecipeList.jsx
 import React from 'react';
-import useRecipeStore from './recipeStore';
+import { useRecipeStore } from './recipeStore';
 
 const RecipeList = () => {
-  const recipes = useRecipeStore((state) => state.filteredRecipes(state));
-  const setSearchQuery = useRecipeStore((state) => state.setSearchQuery);
+  const filteredRecipes = useRecipeStore(state => state.filteredRecipes);
 
   return (
     <div>
-      <input
-        type="text"
-        placeholder="Search recipes..."
-        onChange={(e) => setSearchQuery(e.target.value)}
-      />
-      {recipes.map((recipe) => (
+      {filteredRecipes.map(recipe => (
         <div key={recipe.id}>
           <h3>{recipe.title}</h3>
           <p>{recipe.description}</p>
