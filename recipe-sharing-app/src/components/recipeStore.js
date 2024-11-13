@@ -4,6 +4,10 @@ import create from 'zustand';
 const useRecipeStore = create((set) => ({
   recipes: [],
   searchQuery: '',
+  
+  // Action to set the entire list of recipes
+  setRecipes: (newRecipes) => set({ recipes: newRecipes }),
+  
   setSearchQuery: (query) => set({ searchQuery: query }),
   
   addRecipe: (newRecipe) => set((state) => ({ recipes: [...state.recipes, newRecipe] })),
