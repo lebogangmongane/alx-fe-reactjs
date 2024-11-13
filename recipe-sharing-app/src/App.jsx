@@ -8,6 +8,7 @@ import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import RecipeList from './RecipeList';
 import AddRecipeForm from './AddRecipeForm';
 import RecipeDetails from './RecipeDetails';
+import EditRecipeForm from './components/EditRecipeForm';
 
 function App() {
   const [count, setCount] = useState(0)
@@ -35,22 +36,12 @@ function App() {
         Click on the Vite and React logos to learn more
       </p>
       <Router>
-      <div className="App">
-        <h1>Recipe Sharing Application</h1>
-        <Link to="/">Home</Link>
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <>
-                <AddRecipeForm />
-                <RecipeList />
-              </>
-            }
-          />
-          <Route path="/recipe/:id" element={<RecipeDetails />} />
-        </Routes>
-      </div>
+      <Routes>
+        <Route path="/" element={<RecipeList />} />
+        <Route path="/add" element={<AddRecipeForm />} />
+        <Route path="/recipe/:id" element={<RecipeDetails />} />
+        <Route path="/edit/:id" element={<EditRecipeForm />} />
+      </Routes>
     </Router>
     </>
   )
