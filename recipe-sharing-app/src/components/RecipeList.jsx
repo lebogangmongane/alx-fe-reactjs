@@ -1,6 +1,6 @@
-// src/components/RecipeList.jsx
+/* eslint-disable no-unused-vars */
 import React from 'react';
-import { Link } from 'react-router-dom'; // Import Link for navigation
+import { Link } from 'react-router-dom';
 import { useRecipeStore } from './recipeStore';
 
 const RecipeList = () => {
@@ -13,8 +13,7 @@ const RecipeList = () => {
         <div key={recipe.id}>
           <h3>{recipe.title}</h3>
           <p>{recipe.description}</p>
-          {/* Link to navigate to the RecipeDetails component */}
-          <Link to={`/recipes/${recipe.id}`}>View Detai.ls</Link>
+          <Link to={`/recipes/${recipe.id}`}>View Details</Link>
         </div>
       ))}
     </div>
