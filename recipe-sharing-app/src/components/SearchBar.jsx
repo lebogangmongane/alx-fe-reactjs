@@ -1,5 +1,4 @@
 /* eslint-disable no-unused-vars */
-// src/components/SearchBar.jsx
 import React from 'react';
 import { useRecipeStore } from './recipeStore';
 
