@@ -6,7 +6,7 @@ import RecipeDetails from './components/RecipeDetails';
 import EditRecipeForm from './components/EditRecipeForm';
 import FavoritesList from './components/FavoritesList';
 import SearchBar from './components/SearchBar';
-import { AddRecipeForm } from './components/AddRecipeForm';
+import AddRecipeForm from './components/AddRecipeForm';
 function App() {
   return (
     <Router>
