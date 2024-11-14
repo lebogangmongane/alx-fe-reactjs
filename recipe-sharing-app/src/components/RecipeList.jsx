@@ -1,17 +1,20 @@
-/* eslint-disable no-unused-vars */
 // src/components/RecipeList.jsx
 import React from 'react';
+import { Link } from 'react-router-dom'; // Import Link for navigation
 import { useRecipeStore } from './recipeStore';
 
 const RecipeList = () => {
-  const filteredRecipes = useRecipeStore(state => state.filteredRecipes);
+  const recipes = useRecipeStore(state => state.filteredRecipes.length > 0 ? state.filteredRecipes : state.recipes);
 
   return (
     <div>
-      {filteredRecipes.map(recipe => (
+      <h2>Recipes</h2>
+      {recipes.map(recipe => (
         <div key={recipe.id}>
           <h3>{recipe.title}</h3>
           <p>{recipe.description}</p>
+          {/* Link to navigate to the RecipeDetails component */}
+          <Link to={`/recipes/${recipe.id}`}>View Detai.ls</Link>
         </div>
       ))}
     </div>
