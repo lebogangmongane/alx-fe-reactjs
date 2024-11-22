@@ -1,34 +1,47 @@
 import React, { useState } from 'react';
 
 function RegistrationForm() {
-  const [formData, setFormData] = useState({ username: '', email: '', password: '' });
-
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
+  // Separate state for each input field
+  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!formData.username || !formData.email || !formData.password) {
+    if (!username || !email || !password) {
       alert("All fields are required!");
       return;
     }
-    console.log("Form Data Submitted:", formData);
+    console.log("Form Data Submitted:", { username, email, password });
   };
 
   return (
     <form onSubmit={handleSubmit}>
       <div>
         <label>Username:</label>
-        <input name="username" value={formData.username} onChange={handleChange} />
+        <input
+          name="username"
+          value={username} // Explicitly bind the state here
+          onChange={(e) => setUsername(e.target.value)}
+        />
       </div>
       <div>
         <label>Email:</label>
-        <input name="email" type="email" value={formData.email} onChange={handleChange} />
+        <input
+          name="email"
+          type="email"
+          value={email} // Explicitly bind the state here
+          onChange={(e) => setEmail(e.target.value)}
+        />
       </div>
       <div>
         <label>Password:</label>
-        <input name="password" type="password" value={formData.password} onChange={handleChange} />
+        <input
+          name="password"
+          type="password"
+          value={password} // Explicitly bind the state here
+          onChange={(e) => setPassword(e.target.value)}
+        />
       </div>
       <button type="submit">Register</button>
     </form>
