@@ -18,6 +18,7 @@ const PostsComponent = () => {
     isLoading,
     isError,
     error,
+    refetch,
   } = useQuery('posts', fetchPosts, {
     cacheTime: 5 * 60 * 1000, // Keep cached data for 5 minutes
     staleTime: 30 * 1000, // Data considered fresh for 30 seconds
@@ -36,6 +37,7 @@ const PostsComponent = () => {
   return (
     <div>
       <h1>Posts</h1>
+      <button onClick={refetch}>Refetch Posts</button>
       <ul>
         {posts.map((post) => (
           <li key={post.id}>
