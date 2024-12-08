@@ -3,49 +3,82 @@ import React, { useState } from 'react';
 const AddRecipeForm = () => {
   const [title, setTitle] = useState('');
   const [ingredients, setIngredients] = useState('');
-  const [steps, setSteps] = useState('');
+  const [instructions, setInstructions] = useState('');
+  const [errors, setErrors] = useState({});
+
+  const validate = () => {
+    const newErrors = {};
+    if (!title) newErrors.title = "Title is required.";
+    if (!ingredients) newErrors.ingredients = "Ingredients are required.";
+    if (!instructions) newErrors.instructions = "Instructions are required.";
+    return newErrors;
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log({ title, ingredients, steps });
-    setTitle('');
-    setIngredients('');
-    setSteps('');
+    const validationErrors = validate();
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
+    } else {
+      // Here you would handle the submission (e.g., sending the data to an API or updating state)
+      console.log('Submitting:', { title, ingredients, instructions });
+      // Reset form fields
+      setTitle('');
+      setIngredients('');
+      setInstructions('');
+      setErrors({});
+    }
   };
 
   return (
-    <form onSubmit={handleSubmit} className="max-w-lg mx-auto p-4 bg-white shadow-md rounded">
-      <h2 className="text-2xl font-bold mb-4">Add a New Recipe</h2>
+    <form onSubmit={handleSubmit} className="p-4">
       <div className="mb-4">
-        <label className="block text-gray-700 mb-2">Title</label>
+        <label className="block text-sm font-bold mb-2" htmlFor="title">
+          Recipe Title
+        </label>
         <input
           type="text"
+          id="title"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
-          className="w-full border rounded p-2"
-          required
+          className={`border ${errors.title ? 'border-red-500' : 'border-gray-300'} p-2 w-full`}
         />
+        {errors.title && <p className="text-red-500 text-xs italic">{errors.title}</p>}
       </div>
+
       <div className="mb-4">
-        <label className="block text-gray-700 mb-2">Ingredients</label>
+        <label className="block text-sm font-bold mb-2" htmlFor="ingredients">
+          Ingredients
+        </label>
         <textarea
+          id="ingredients"
           value={ingredients}
           onChange={(e) => setIngredients(e.target.value)}
-          className="w-full border rounded p-2"
-          required
+          className={`border ${errors.ingredients ? 'border-red-500' : 'border-gray-300'} p-2 w-full`}
+          rows="4"
         />
+        {errors.ingredients && <p className="text-red-500 text-xs italic">{errors.ingredients}</p>}
       </div>
+
       <div className="mb-4">
-        <label className="block text-gray-700 mb-2">Steps</label>
+        <label className="block text-sm font-bold mb-2" htmlFor="instructions">
+          Instructions
+        </label>
         <textarea
-          value={steps}
-          onChange={(e) => setSteps(e.target.value)}
-          className="w-full border rounded p-2"
-          required
+          id="instructions"
+          value={instructions}
+          onChange={(e) => setInstructions(e.target.value)}
+          className={`border ${errors.instructions ? 'border-red-500' : 'border-gray-300'} p-2 w-full`}
+          rows="4"
         />
+        {errors.instructions && <p className="text-red-500 text-xs italic">{errors.instructions}</p>}
       </div>
-      <button type="submit" className="bg-blue-500 text-white rounded p-2">
-        Submit Recipe
+
+      <button
+        type="submit"
+        className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700"
+      >
+        Add Recipe
       </button>
     </form>
   );
