@@ -4,6 +4,7 @@ const AddRecipeForm = () => {
   const [title, setTitle] = useState('');
   const [ingredients, setIngredients] = useState('');
   const [instructions, setInstructions] = useState('');
+  const [steps, setSteps] = useState(''); // New state for steps
   const [errors, setErrors] = useState({});
 
   const validate = () => {
@@ -11,6 +12,7 @@ const AddRecipeForm = () => {
     if (!title) newErrors.title = "Title is required.";
     if (!ingredients) newErrors.ingredients = "Ingredients are required.";
     if (!instructions) newErrors.instructions = "Instructions are required.";
+    if (!steps) newErrors.steps = "Steps are required."; // Validation for steps
     return newErrors;
   };
 
@@ -21,11 +23,12 @@ const AddRecipeForm = () => {
       setErrors(validationErrors);
     } else {
       // Here you would handle the submission (e.g., sending the data to an API or updating state)
-      console.log('Submitting:', { title, ingredients, instructions });
+      console.log('Submitting:', { title, ingredients, instructions, steps });
       // Reset form fields
       setTitle('');
       setIngredients('');
       setInstructions('');
+      setSteps(''); // Reset steps
       setErrors({});
     }
   };
@@ -72,6 +75,20 @@ const AddRecipeForm = () => {
           rows="4"
         />
         {errors.instructions && <p className="text-red-500 text-xs italic">{errors.instructions}</p>}
+      </div>
+
+      <div className="mb-4">
+        <label className="block text-sm font-bold mb-2" htmlFor="steps">
+          Steps
+        </label>
+        <textarea
+          id="steps"
+          value={steps}
+          onChange={(e) => setSteps(e.target.value)}
+          className={`border ${errors.steps ? 'border-red-500' : 'border-gray-300'} p-2 w-full`}
+          rows="4"
+        />
+        {errors.steps && <p className="text-red-500 text-xs italic">{errors.steps}</p>}
       </div>
 
       <button
