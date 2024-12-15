@@ -4,7 +4,7 @@ const AddRecipeForm = () => {
   const [title, setTitle] = useState('');
   const [ingredients, setIngredients] = useState('');
   const [instructions, setInstructions] = useState('');
-  const [steps, setSteps] = useState(''); // New state for steps
+  const [steps, setSteps] = useState('');
   const [errors, setErrors] = useState({});
 
   const validate = () => {
@@ -12,7 +12,7 @@ const AddRecipeForm = () => {
     if (!title) newErrors.title = "Title is required.";
     if (!ingredients) newErrors.ingredients = "Ingredients are required.";
     if (!instructions) newErrors.instructions = "Instructions are required.";
-    if (!steps) newErrors.steps = "Steps are required."; // Validation for steps
+    if (!steps) newErrors.steps = "Steps are required.";
     return newErrors;
   };
 
@@ -22,19 +22,20 @@ const AddRecipeForm = () => {
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
     } else {
-      // Here you would handle the submission (e.g., sending the data to an API or updating state)
       console.log('Submitting:', { title, ingredients, instructions, steps });
-      // Reset form fields
       setTitle('');
       setIngredients('');
       setInstructions('');
-      setSteps(''); // Reset steps
+      setSteps('');
       setErrors({});
     }
   };
 
   return (
-    <form onSubmit={handleSubmit} className="p-4">
+    <form
+      onSubmit={handleSubmit}
+      className="p-4 shadow-md rounded-md bg-white md:max-w-2xl md:mx-auto"
+    >
       <div className="mb-4">
         <label className="block text-sm font-bold mb-2" htmlFor="title">
           Recipe Title
@@ -44,7 +45,7 @@ const AddRecipeForm = () => {
           id="title"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
-          className={`border ${errors.title ? 'border-red-500' : 'border-gray-300'} p-2 w-full`}
+          className={`border ${errors.title ? 'border-red-500' : 'border-gray-300'} shadow-sm p-2 w-full rounded-md`}
         />
         {errors.title && <p className="text-red-500 text-xs italic">{errors.title}</p>}
       </div>
@@ -57,7 +58,7 @@ const AddRecipeForm = () => {
           id="ingredients"
           value={ingredients}
           onChange={(e) => setIngredients(e.target.value)}
-          className={`border ${errors.ingredients ? 'border-red-500' : 'border-gray-300'} p-2 w-full`}
+          className={`border ${errors.ingredients ? 'border-red-500' : 'border-gray-300'} shadow-sm p-2 w-full rounded-md`}
           rows="4"
         />
         {errors.ingredients && <p className="text-red-500 text-xs italic">{errors.ingredients}</p>}
@@ -71,7 +72,7 @@ const AddRecipeForm = () => {
           id="instructions"
           value={instructions}
           onChange={(e) => setInstructions(e.target.value)}
-          className={`border ${errors.instructions ? 'border-red-500' : 'border-gray-300'} p-2 w-full`}
+          className={`border ${errors.instructions ? 'border-red-500' : 'border-gray-300'} shadow-sm p-2 w-full rounded-md`}
           rows="4"
         />
         {errors.instructions && <p className="text-red-500 text-xs italic">{errors.instructions}</p>}
@@ -85,7 +86,7 @@ const AddRecipeForm = () => {
           id="steps"
           value={steps}
           onChange={(e) => setSteps(e.target.value)}
-          className={`border ${errors.steps ? 'border-red-500' : 'border-gray-300'} p-2 w-full`}
+          className={`border ${errors.steps ? 'border-red-500' : 'border-gray-300'} shadow-sm p-2 w-full rounded-md`}
           rows="4"
         />
         {errors.steps && <p className="text-red-500 text-xs italic">{errors.steps}</p>}
@@ -93,7 +94,7 @@ const AddRecipeForm = () => {
 
       <button
         type="submit"
-        className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700"
+        className="bg-blue-500 text-white px-4 py-2 rounded-md shadow hover:bg-blue-700 md:w-1/3 md:mx-auto"
       >
         Add Recipe
       </button>
