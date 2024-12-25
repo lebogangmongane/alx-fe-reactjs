@@ -18,7 +18,7 @@ const Search = () => {
     try {
       const userData = await searchUsers(username, location, minRepos);
       if (userData.length === 0) {
-        setError("Looks like we can't find the user");
+        setError("Looks like we cant find the user");
       } else {
         setUsers(userData);
       }
