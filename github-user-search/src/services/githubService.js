@@ -4,7 +4,19 @@ import axios from 'axios';
 export const searchUsers = async (username, location, minRepos) => {
   try {
     // Construct the search query with parameters
-    const query = `q=${username}${location ? `+location:${location}` : ''}${minRepos ? `+repos:>=${minRepos}` : ''}`;
+    let query = `q=${username}`;
+
+    // Append location to query if provided
+    if (location) {
+      query += `+location:${location}`;
+    }
+
+    // Append minimum repositories to query if provided
+    if (minRepos) {
+      query += `+repos:>=${minRepos}`;
+    }
+
+    // Make API call to GitHub's user search endpoint
     const response = await axios.get(`https://api.github.com/search/users?${query}`);
 
     // Return the list of users
