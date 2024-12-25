@@ -8,10 +8,10 @@ const Search = () => {
   const [loading, setLoading] = useState(false);
 
   const handleSearch = async (e) => {
-    e.preventDefault(); // Prevent form default behavior
+    e.preventDefault(); // Prevent default form submission
     setLoading(true); // Show loading state
     setError(null); // Reset error state
-    setUserData(null); // Reset previous user data
+    setUserData(null); // Clear previous user data
 
     try {
       const response = await githubService.getUser(username);
@@ -39,15 +39,15 @@ const Search = () => {
         </button>
       </form>
 
-      {loading && <div className="loading-message">Loading...</div>}
+      {loading && <p className="loading-message">Loading...</p>}
 
-      {error && <div className="error-message">{error}</div>}
+      {error && <p className="error-message">{error}</p>}
 
       {userData && (
         <div className="user-info">
           <img src={userData.avatar_url} alt={`${userData.login}'s avatar`} />
-          <h2>{userData.name}</h2>
-          <p>{userData.bio}</p>
+          <h2>{userData.name || userData.login}</h2>
+          <p>{userData.bio || "No bio available"}</p>
           <a href={userData.html_url} target="_blank" rel="noopener noreferrer">
             Visit GitHub Profile
           </a>
