@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { searchUsers } from '../services/githubService';
+import { searchUsers } from '../services/githubService'; // Ensure this function exists
 
 const Search = () => {
   const [username, setUsername] = useState('');
@@ -8,7 +8,8 @@ const Search = () => {
   const [users, setUsers] = useState([]);
   const [error, setError] = useState('');
 
-  const handleSearch = async () => {
+  // This function fetches user data
+  const fetchUserData = async () => {
     try {
       const results = await searchUsers(username, location, minRepos);
       setUsers(results);
@@ -17,6 +18,10 @@ const Search = () => {
       setError('Error fetching users.'); // Set error message
       console.error(error);
     }
+  };
+
+  const handleSearch = () => {
+    fetchUserData(); // Call fetchUserData instead of directly fetching here
   };
 
   return (
