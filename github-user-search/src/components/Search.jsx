@@ -45,7 +45,11 @@ const Search = () => {
 
       <ul>
         {users.length > 0 && users.map((user) => ( // Conditional rendering for users
-          <li key={user.id}>{user.login}</li>
+          <li key={user.id}>
+            <a href={user.html_url} target="_blank" rel="noopener noreferrer">
+              {user.login}
+            </a>
+          </li>
         ))}
       </ul>
     </div>
