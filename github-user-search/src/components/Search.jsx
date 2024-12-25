@@ -20,12 +20,14 @@ const Search = () => {
     }
   };
 
-  const handleSearch = () => {
-    fetchUserData(); // Call fetchUserData instead of directly fetching here
+  // Handle form submission
+  const handleSubmit = (event) => {
+    event.preventDefault(); // Prevent default form submission
+    fetchUserData(); // Call fetchUserData when the form is submitted
   };
 
   return (
-    <div>
+    <form onSubmit={handleSubmit}> {/* Wrap inputs in a form and use onSubmit */}
       <input
         type="text"
         placeholder="Username"
@@ -44,7 +46,7 @@ const Search = () => {
         value={minRepos}
         onChange={(e) => setMinRepos(e.target.value)}
       />
-      <button onClick={handleSearch}>Search</button>
+      <button type="submit">Search</button> {/* Change button type to submit */}
 
       {error && <p className="error">{error}</p>} {/* Conditional rendering for error message */}
 
@@ -57,7 +59,7 @@ const Search = () => {
           </li>
         ))}
       </ul>
-    </div>
+    </form>
   );
 };
 
