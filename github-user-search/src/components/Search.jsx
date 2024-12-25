@@ -13,11 +13,17 @@ const Search = () => {
     setError(null); // Reset error state
     setUserData(null); // Clear previous user data
 
+    if (!username.trim()) {
+      setError("Please enter a username");
+      setLoading(false);
+      return;
+    }
+
     try {
       const response = await githubService.getUser(username);
       setUserData(response.data);
     } catch (err) {
-      setError("Looks like we can't find the user");
+      setError(err.message || "Looks like we can't find the user");
     } finally {
       setLoading(false); // Hide loading state
     }
