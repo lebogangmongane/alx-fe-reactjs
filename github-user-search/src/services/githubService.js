@@ -17,7 +17,7 @@ export const searchUsers = async (username, location = '', minRepos = 0) => {
     }
 
     // Make API call to GitHub's user search endpoint
-    const response = await axios.get(`https://api.github.com/search/users?${query}`);
+    const response = await axios.get(`https://api.github.com/search/users?q');
 
     // Return the list of users
     return response.data.items;
