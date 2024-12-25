@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 // Function to search for GitHub users based on username, location, and minimum repositories
-export const searchUsers = async (username, location, minRepos) => {
+export const searchUsers = async (username, location = '', minRepos = 0) => {
   try {
     // Construct the search query with parameters
     let query = `q=${username}`;
@@ -12,7 +12,7 @@ export const searchUsers = async (username, location, minRepos) => {
     }
 
     // Append minimum repositories to query if provided
-    if (minRepos) {
+    if (minRepos > 0) {
       query += `+repos:>=${minRepos}`;
     }
 
