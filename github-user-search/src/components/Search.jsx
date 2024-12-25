@@ -3,15 +3,18 @@ import { searchUsers } from '../services/githubService';
 
 const Search = () => {
   const [username, setUsername] = useState('');
-  const [location, setLocation] = useState(''); // Add location state
+  const [location, setLocation] = useState('');
   const [minRepos, setMinRepos] = useState(0);
   const [users, setUsers] = useState([]);
+  const [error, setError] = useState('');
 
   const handleSearch = async () => {
     try {
-      const results = await searchUsers(username, location, minRepos); // Pass location to search function
+      const results = await searchUsers(username, location, minRepos);
       setUsers(results);
+      setError(''); // Clear any previous error messages
     } catch (error) {
+      setError('Error fetching users.'); // Set error message
       console.error(error);
     }
   };
@@ -28,7 +31,7 @@ const Search = () => {
         type="text"
         placeholder="Location"
         value={location}
-        onChange={(e) => setLocation(e.target.value)} // Input for location
+        onChange={(e) => setLocation(e.target.value)}
       />
       <input
         type="number"
@@ -38,8 +41,10 @@ const Search = () => {
       />
       <button onClick={handleSearch}>Search</button>
 
+      {error && <p className="error">{error}</p>} {/* Conditional rendering for error message */}
+
       <ul>
-        {users.map((user) => (
+        {users.length > 0 && users.map((user) => ( // Conditional rendering for users
           <li key={user.id}>{user.login}</li>
         ))}
       </ul>
